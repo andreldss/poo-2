@@ -1,0 +1,55 @@
+class Produto {
+    public nome: string;
+    protected preco: number;
+    private codigo: string;
+
+    constructor(nome: string, preco: number, codigo: string) {
+        this.nome = nome;
+        this.preco = preco;
+        this.codigo = codigo;
+    }
+
+    apresentar() {
+        console.log(`O produto ${this.nome} custa R$${this.preco.toFixed(2)}.`);
+    }
+
+    public obterNome(): string {
+        return this.nome;
+    }
+
+    protected obterPreco(): number {
+        return this.preco;
+    }
+
+    private obterCodigo(): string {
+        return this.codigo;
+    }
+}
+
+class ProdutoPerecivel extends Produto {
+    public dataValidade: Date;
+
+    constructor(nome: string, preco: number, codigo: string, dataValidade: Date) {
+        super(nome, preco, codigo);
+        this.dataValidade = dataValidade;
+    }
+
+    verificarValidade() {
+        const hoje = new Date();
+        if (this.dataValidade < hoje) {
+            console.log(`O produto ${this.nome} está vencido.`);
+        } else {
+            console.log(`O produto ${this.nome} está dentro da validade.`);
+        }
+    }
+
+    public obterDataValidade(): Date {
+        return this.dataValidade;
+    }
+}
+
+const produto1 = new Produto('Peito de Frango', 10.99, '123456');
+const produtoPerecivel1 = new ProdutoPerecivel('Banana', 3.49, '654321', new Date('2023-06-30'));
+
+produto1.apresentar();
+produtoPerecivel1.verificarValidade();
