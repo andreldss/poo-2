@@ -8,7 +8,7 @@ export class Estoque {
     constructor(id: number, produto: Produto, quantidade: number) {
         this.id = id;
         this.produto = produto;
-        if (this.quantidade <= 0) {
+        if (quantidade <= 0) {
             throw new Error("O valor do unitário não pode ser zero ou negativo!");
         }
         this.quantidade = quantidade;
